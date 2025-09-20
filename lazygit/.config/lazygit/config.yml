@@ -1,0 +1,3 @@
+os:
+  editCommand: '/opt/homebrew/bin/nvim'
+  editCommandTemplate: '{{editor}} {{filename}}'

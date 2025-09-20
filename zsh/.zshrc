@@ -106,7 +106,37 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+# use type to check if command conflict
+# use alias to list all aliases
+render-mmd() {
+    local format="${2:-svg}"  # Default to svg if no second argument
+    case "$format" in
+        png|jpg|svg)
+            mmdc -i "$1" -o "${1%.mmd}.${format}" --outputFormat "$format"
+            ;;
+        *)
+            echo "Error: Unsupported format '$format'. Use png, jpg, or svg."
+            return 1
+            ;;
+    esac
+}
+
+
+alias ..='cd ..'                 # Go up one directory
+alias ...='cd ../..'             # Go up two directories
+alias ....='cd ../../..'         # Go up three directories
+alias .....='cd ../../../..'     # Go up four directories
+alias ......='cd ../../../../..' # Go up five directories
+
+alias lls='ls -lahFOT'  # Most verbose ls with full details
+
 alias vim="nvim"
+alias v="nvim"
+
+# Aliases for editing and refreshing zshrc
+alias ez='vim ~/.zshrc'          # Edit zshrc with Vim
+alias rz='source ~/.zshrc'       # Refresh zshrc
+
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
